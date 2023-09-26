@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/pages/widgets/progress-bar.dart';
+import 'package:get/get.dart';
 
 class Details extends StatefulWidget {
   Details({super.key});
@@ -17,12 +18,14 @@ class _DetailsState extends State<Details> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(238, 235, 235, 0),
+          backgroundColor: const Color.fromRGBO(238, 235, 235, 0),
           iconTheme: const IconThemeData(color: Colors.white),
           elevation: 0.0,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
-            onPressed: () {},
+            onPressed: () => Get.toNamed(
+              'home',
+            ),
           ),
           actions: [
             IconButton(
