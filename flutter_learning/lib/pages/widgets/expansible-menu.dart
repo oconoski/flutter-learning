@@ -83,11 +83,11 @@ class _ExpansibleMenuState extends State<ExpansibleMenu>
           elevation: 4,
           child: InkWell(
             onTap: _toggle,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
+            child: const Padding(
+              padding: EdgeInsets.all(8),
               child: Icon(
                 Icons.remove,
-                color: Theme.of(context).primaryColor,
+                color: Colors.red,
               ),
             ),
           ),
@@ -143,14 +143,12 @@ class _ExpansibleMenuState extends State<ExpansibleMenu>
 
 @immutable
 class ActionButton extends StatelessWidget {
-  const ActionButton({
-    super.key,
-    this.onPressed,
-    required this.icon,
-  });
+  const ActionButton(
+      {super.key, this.onPressed, required this.icon, required this.color});
 
   final VoidCallback? onPressed;
   final Widget icon;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -158,12 +156,12 @@ class ActionButton extends StatelessWidget {
     return Material(
       shape: const CircleBorder(),
       clipBehavior: Clip.antiAlias,
-      color: theme.colorScheme.secondary,
+      color: color,
       elevation: 4,
       child: IconButton(
         onPressed: onPressed,
         icon: icon,
-        color: theme.colorScheme.onSecondary,
+        color: Colors.white,
       ),
     );
   }
