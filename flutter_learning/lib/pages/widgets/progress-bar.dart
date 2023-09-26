@@ -18,7 +18,7 @@ class ProgressBar extends StatelessWidget {
     Color progressColor = _calculateProgressColor(percentage);
 
     return Container(
-      margin: EdgeInsets.all(15),
+      margin: const EdgeInsets.all(15),
       child: Row(
         children: <Widget>[
           Expanded(
@@ -29,20 +29,20 @@ class ProgressBar extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     '$name:',
-                    style: TextStyle(fontSize: 15),
+                    style: const TextStyle(fontSize: 15),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
                     '$currentValue',
-                    style: TextStyle(fontSize: 15),
+                    style: const TextStyle(fontSize: 15),
                   ),
                 ],
               ),
             ),
           ),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(
-            flex: 1, //aumentar barra
+            flex: 1,
             child: Align(
               alignment: Alignment.centerRight,
               child: Container(

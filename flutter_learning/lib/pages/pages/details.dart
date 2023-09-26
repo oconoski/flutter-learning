@@ -56,25 +56,19 @@ class _DetailsState extends State<Details> {
                           Tab(
                             child: Text(
                               'Sobre',
-                              style: TextStyle(
-                                  color:
-                                      Colors.black), // Set text color to black
+                              style: TextStyle(color: Colors.black),
                             ),
                           ),
                           Tab(
                             child: Text(
                               'Evoluções',
-                              style: TextStyle(
-                                  color:
-                                      Colors.black), // Set text color to black
+                              style: TextStyle(color: Colors.black),
                             ),
                           ),
                           Tab(
                             child: Text(
                               'Movimentos',
-                              style: TextStyle(
-                                  color:
-                                      Colors.black), // Set text color to black
+                              style: TextStyle(color: Colors.black),
                             ),
                           ),
                         ],
@@ -135,10 +129,10 @@ class _DetailsState extends State<Details> {
                             child: Column(
                               children: [
                                 ListTile(
-                                  title: Text('Move 1: Ember'),
+                                  title: Text('Move 1: Rosnar'),
                                 ),
                                 ListTile(
-                                  title: Text('Move 2: Flamethrower'),
+                                  title: Text('Move 2: Lança-chamas'),
                                 )
                               ],
                             ),

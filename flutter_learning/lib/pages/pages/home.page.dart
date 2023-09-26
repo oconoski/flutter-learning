@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/pages/controllers/home_page_controller.dart';
-import 'package:flutter_learning/pages/home/home.dart';
+import 'package:flutter_learning/pages/pages/home.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatefulWidget {
