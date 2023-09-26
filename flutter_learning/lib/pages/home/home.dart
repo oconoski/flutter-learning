@@ -26,77 +26,87 @@ class _HomeState extends State<Home> {
         crossAxisCount: 1,
         mainAxisSpacing: 50,
         children: List.generate(
-            3,
-            (index) => InkWell(
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: const Color.fromRGBO(255, 255, 255, 0.7)),
-                        child: Center(
-                          child: Image.asset(
-                            'assets/images/charmander.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 5,
-                        left: 5,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              border: Border.all(color: Colors.white),
-                              borderRadius: BorderRadius.circular(10.0)),
-                          child: const Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Text(
-                              'Charmander',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
+          3,
+          (index) => InkWell(
+            child: Stack(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromRGBO(255, 255, 255, 0.7),
+                  ),
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/charmander.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Builder(
+                  builder: (context) {
+                    return removeItens
+                        ? Positioned(
+                            right: 10,
+                            top: 10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 255, 255, 255),
+                                borderRadius: BorderRadius.circular(50.0),
+                              ),
+                              child: IconButton(
+                                icon: const Icon(Icons.close),
+                                onPressed: () {
+                                  // Perform the close action here
+                                  // You can access context here if needed
+                                },
+                                color: const Color.fromARGB(255, 200, 15, 1),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      removeItens == true
-                          ? Positioned(
-                              right: 10,
-                              top: 10,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(Icons.close),
-                                  onPressed: () {},
-                                  color: const Color.fromARGB(255, 200, 15, 1),
-                                ),
+                          )
+                        : Positioned(
+                            right: 10,
+                            top: 10,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(50.0),
                               ),
-                            )
-                          : Positioned(
-                              right: 10,
-                              top: 10,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(Icons.favorite_border),
-                                  onPressed: () {},
-                                  color: const Color.fromARGB(255, 200, 15, 1),
-                                ),
+                              child: IconButton(
+                                icon: const Icon(Icons.favorite_border),
+                                onPressed: () {
+                                  // Perform the favorite action here
+                                  // You can access context here if needed
+                                },
+                                color: const Color.fromARGB(255, 200, 15, 1),
                               ),
                             ),
-                    ],
+                          );
+                  },
+                ),
+                Positioned(
+                  bottom: 5,
+                  left: 5,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.white),
+                        borderRadius: BorderRadius.circular(10.0)),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: Text(
+                        'Charmander',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ),
-                  onTap: () => Get.toNamed(
-                    'details',
-                  ),
-                )),
+                ),
+              ],
+            ),
+            onTap: () => Get.toNamed('details'),
+          ),
+        ),
       ),
       backgroundColor: const Color.fromARGB(255, 173, 216, 230),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -104,21 +114,22 @@ class _HomeState extends State<Home> {
         distance: 100,
         children: [
           ActionButton(
-            onPressed: () => Get.toNamed(
-              'details',
-            ),
+            onPressed: () => Get.toNamed('details'),
             icon: const Icon(Icons.add),
             color: Colors.blue,
           ),
           ActionButton(
-            onPressed: () => removeItens = !removeItens,
+            onPressed: () => setState(() {
+              removeItens = !removeItens;
+            }),
             icon: const Icon(Icons.delete),
             color: Colors.red,
           ),
           ActionButton(
-              onPressed: () => 1,
-              icon: const Icon(Icons.search),
-              color: Colors.grey),
+            onPressed: () => 1,
+            icon: const Icon(Icons.search),
+            color: Colors.grey,
+          ),
         ],
       ),
     );
