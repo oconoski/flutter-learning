@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/pages/home/home.dart';
+import 'package:flutter_learning/pages/home/details.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({super.key});
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
       title: 'Remind',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.cyan),
-      home: Home(),
+      home: Details(),
     );
   }
 }
