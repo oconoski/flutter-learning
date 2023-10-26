@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learning/pages/widgets/expansible-menu.dart';
+import 'package:flutter_learning/src/widgets/expansible-menu.dart';
 import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
@@ -53,8 +53,7 @@ class _HomeState extends State<Home> {
                                 top: 10,
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: const Color.fromARGB(
-                                        255, 255, 255, 255),
+                                    color: const Color.fromARGB(255, 255, 255, 255),
                                     borderRadius: BorderRadius.circular(50.0),
                                   ),
                                   child: IconButton(
@@ -62,8 +61,7 @@ class _HomeState extends State<Home> {
                                     onPressed: () => setState(() {
                                       removeItens = !removeItens;
                                     }),
-                                    color:
-                                        const Color.fromARGB(255, 200, 15, 1),
+                                    color: const Color.fromARGB(255, 200, 15, 1),
                                   ),
                                 ),
                               )
@@ -78,8 +76,7 @@ class _HomeState extends State<Home> {
                                   child: IconButton(
                                     icon: const Icon(Icons.favorite_border),
                                     onPressed: () {},
-                                    color:
-                                        const Color.fromARGB(255, 200, 15, 1),
+                                    color: const Color.fromARGB(255, 200, 15, 1),
                                   ),
                                 ),
                               );
@@ -89,10 +86,7 @@ class _HomeState extends State<Home> {
                       bottom: 5,
                       left: 5,
                       child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(10.0)),
+                        decoration: BoxDecoration(color: Colors.white, border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(10.0)),
                         child: const Padding(
                           padding: EdgeInsets.all(10.0),
                           child: Text(
@@ -112,8 +106,7 @@ class _HomeState extends State<Home> {
           ),
           searching
               ? Container(
-                  decoration: const BoxDecoration(
-                      color: Color.fromRGBO(50, 50, 50, 0.5)),
+                  decoration: const BoxDecoration(color: Color.fromRGBO(50, 50, 50, 0.5)),
                   child: Stack(
                     children: [
                       Center(
@@ -123,14 +116,10 @@ class _HomeState extends State<Home> {
                             child: Container(
                               decoration: const BoxDecoration(
                                 color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10)),
+                                borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
                               child: TextFormField(
-                                decoration: const InputDecoration(
-                                    suffixIcon: Icon(Icons.search),
-                                    fillColor: Colors.white,
-                                    focusColor: Colors.white),
+                                decoration: const InputDecoration(suffixIcon: Icon(Icons.search), fillColor: Colors.white, focusColor: Colors.white),
                               ),
                             ),
                           ),

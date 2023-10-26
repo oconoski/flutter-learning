@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_learning/pages/widgets/progress-bar.dart';
+import 'package:flutter_learning/src/widgets/progress-bar.dart';
 import 'package:get/get.dart';
 
 class Details extends StatefulWidget {
@@ -88,26 +88,11 @@ class _DetailsState extends State<Details> {
                                   title: Text('Altura: 0.6m'),
                                   subtitle: Text('Peso: 8.5kg'),
                                 ),
-                                ProgressBar(
-                                    name: 'HP',
-                                    currentValue: 45,
-                                    maxValue: 255),
-                                ProgressBar(
-                                    name: 'Ataque',
-                                    currentValue: 224,
-                                    maxValue: 255),
-                                ProgressBar(
-                                    name: 'Defesa',
-                                    currentValue: 85,
-                                    maxValue: 255),
-                                ProgressBar(
-                                    name: 'Velocidade',
-                                    currentValue: 100,
-                                    maxValue: 255),
-                                ProgressBar(
-                                    name: 'Total',
-                                    currentValue: 180,
-                                    maxValue: 255),
+                                ProgressBar(name: 'HP', currentValue: 45, maxValue: 255),
+                                ProgressBar(name: 'Ataque', currentValue: 224, maxValue: 255),
+                                ProgressBar(name: 'Defesa', currentValue: 85, maxValue: 255),
+                                ProgressBar(name: 'Velocidade', currentValue: 100, maxValue: 255),
+                                ProgressBar(name: 'Total', currentValue: 180, maxValue: 255),
                               ],
                             ),
                           ),

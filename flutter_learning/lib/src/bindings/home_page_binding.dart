@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:flutter_learning/pages/controllers/home_page_controller.dart';
+import 'package:flutter_learning/src/controllers/routing_controller.dart';
 
 class HomePageBinding implements Bindings {
   @override
