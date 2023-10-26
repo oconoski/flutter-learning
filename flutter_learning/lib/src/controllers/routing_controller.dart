@@ -7,4 +7,14 @@ class HomePageController extends GetxController {
       'details',
     );
   }
+
+  index() {
+    Get.toNamed(
+      'index',
+    );
+  }
+
+  pokedexListPage() async {
+    Get.offAllNamed('/pokedex_list');
+  }
 }

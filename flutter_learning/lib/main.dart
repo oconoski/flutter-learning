@@ -7,9 +7,9 @@ Future<void> main() async {
   await inicialization();
 
   runApp(GetMaterialApp(
-    title: 'Pokedex',
+    title: 'OWNDEX',
     debugShowCheckedModeBanner: false,
-    initialRoute: Routes.HOME,
+    initialRoute: Routes.INDEX,
     getPages: AppPages.routes,
   ));
 }
