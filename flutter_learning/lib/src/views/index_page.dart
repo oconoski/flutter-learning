@@ -5,7 +5,8 @@ import 'package:flutter_learning/src/data/repository/user_repository.dart';
 import 'package:get/get.dart';
 
 class IndexPage extends GetView<UserController> {
-  final userController = Get.put(UserController(UserRepository(UserProvider())));
+  final userController =
+      Get.put(UserController(UserRepository(UserProvider())));
 
   bool morePressed = true;
   bool removeItens = false;
