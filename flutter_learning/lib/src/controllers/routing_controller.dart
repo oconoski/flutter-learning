@@ -17,4 +17,8 @@ class HomePageController extends GetxController {
   pokedexListPage() async {
     Get.offAllNamed('/pokedex_list');
   }
+
+  login() async {
+    Get.offAllNamed('/login');
+  }
 }

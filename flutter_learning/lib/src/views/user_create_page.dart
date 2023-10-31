@@ -4,7 +4,7 @@ import 'package:flutter_learning/src/data/providers/user_provider.dart';
 import 'package:flutter_learning/src/data/repository/user_repository.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends GetView<UserController> {
+class UserCreatePage extends GetView<UserController> {
   final userController = Get.put(UserController(UserRepository(UserProvider())));
 
   @override
@@ -16,7 +16,7 @@ class LoginPage extends GetView<UserController> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => Get.toNamed(
-              'index',
+              'login',
             ),
           ),
           elevation: 0,
@@ -33,12 +33,12 @@ class LoginPage extends GetView<UserController> {
                   child: Column(
                     children: [
                       Form(
-                        key: userController.loginForm,
+                        key: userController.registerForm,
                         child: SizedBox(
                           child: Column(
                             children: [
                               const Text(
-                                "Acesse sua conta na OWNDEX!",
+                                "Crie sua conta na OWNDEX e adicione seus próprios pokemons!",
                                 style: TextStyle(
                                   fontSize: 20,
                                   color: Colors.white,
@@ -48,6 +48,55 @@ class LoginPage extends GetView<UserController> {
                               ),
                               const SizedBox(
                                 height: 50,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                child: TextFormField(
+                                  controller: userController.fullname,
+                                  validator: (value) {
+                                    if (value == null || value == '' || value.isEmpty) {
+                                      return 'Insira seu nome';
+                                    }
+                                  },
+                                  keyboardType: TextInputType.name,
+                                  decoration: InputDecoration(
+                                    hintText: 'Nome',
+                                    hintStyle: const TextStyle(color: Colors.white),
+                                    filled: true,
+                                    focusColor: Colors.white,
+                                    fillColor: Colors.grey,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: const BorderSide(
+                                        color: Colors.transparent,
+                                        width: 0,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: const BorderSide(
+                                        color: Colors.white,
+                                        width: 0,
+                                      ),
+                                    ),
+                                    prefixIcon: const Icon(
+                                      Icons.abc,
+                                      color: Colors.white,
+                                      weight: 600,
+                                      size: 20,
+                                    ),
+                                    errorStyle: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 30,
                               ),
                               SizedBox(
                                 width: double.infinity,
@@ -190,7 +239,7 @@ class LoginPage extends GetView<UserController> {
                       Obx(
                         () => ElevatedButton(
                           onPressed: () {
-                            userController.login();
+                            userController.register();
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color.fromRGBO(68, 70, 85, 1),
@@ -199,7 +248,7 @@ class LoginPage extends GetView<UserController> {
                               horizontal: 30.0,
                             ),
                           ),
-                          child: userController.loading.isTrue ? const Text('Entrar') : const Text('carregando'),
+                          child: userController.loading.isTrue ? const Text('Cadastrar') : const Text('carregando'),
                         ),
                       ),
                       const SizedBox(
@@ -208,7 +257,7 @@ class LoginPage extends GetView<UserController> {
                       InkWell(
                         onTap: () => {
                           Get.toNamed(
-                            'user_create',
+                            'login',
                           ),
                         },
                         child: RichText(
@@ -216,7 +265,7 @@ class LoginPage extends GetView<UserController> {
                           text: const TextSpan(
                             children: <TextSpan>[
                               TextSpan(
-                                text: "Ainda não tem uma conta? ",
+                                text: "Já possui cadastro? ",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,
@@ -224,7 +273,7 @@ class LoginPage extends GetView<UserController> {
                                 ),
                               ),
                               TextSpan(
-                                text: "Cadastre-se",
+                                text: "Entrar",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 14,

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_learning/src/controllers/user_controller.dart';
+import 'package:flutter_learning/src/data/providers/user_provider.dart';
+import 'package:flutter_learning/src/data/repository/user_repository.dart';
 import 'package:get/get.dart';
 
-class IndexPage extends StatefulWidget {
-  const IndexPage({super.key});
+class IndexPage extends GetView<UserController> {
+  final userController = Get.put(UserController(UserRepository(UserProvider())));
 
-  @override
-  State<IndexPage> createState() => _IndexState();
-}
-
-class _IndexState extends State<IndexPage> {
   bool morePressed = true;
   bool removeItens = false;
 
@@ -23,7 +21,7 @@ class _IndexState extends State<IndexPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(30, 30, 30, 0.8),
+        backgroundColor: const Color.fromRGBO(34, 34, 36, 1),
       ),
       body: Column(
         children: [
@@ -32,18 +30,17 @@ class _IndexState extends State<IndexPage> {
               child: Container(
                 color: const Color.fromRGBO(240, 0, 0, 1),
                 child: const Center(
-                  child: Text(
-                    'MINHA PRÓPRIA POKEDEX',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                    child: Text(
+                  'MINHA POKEDEX',
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
-                ),
+                )),
               ),
               onTap: () => Get.offAllNamed(
-                'pokedex_list',
+                controller.isLogged ? 'my_own_dex' : 'login',
               ),
             ),
           ),
