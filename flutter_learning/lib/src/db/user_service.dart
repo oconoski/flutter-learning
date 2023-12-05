@@ -23,6 +23,7 @@ class UserService extends GetxService {
     });
 
     await db.execute('CREATE TABLE IF NOT EXISTS token (logged INTEGER NULLABLE)');
+    await db.execute('CREATE TABLE IF NOT EXISTS pokemons (id INTEGER PRIMARY KEY, name TEXT, type TEXT, image TEXT)');
     return db;
   }
 
@@ -75,7 +76,7 @@ class UserService extends GetxService {
   Future<int> delete(int userId) async {
     final id = await db.rawDelete('DELETE FROM user WHERE id = ?', [userId]);
     await db.delete('DELETE FROM token');
-    await db.delete('DELETE FROM ownmons');
+    await db.delete('DELETE FROM pokemons');
 
     return id;
   }

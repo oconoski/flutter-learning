@@ -18,10 +18,10 @@ class _ActionButtonCustomState extends State<ActionButtonCustom> {
       children: [
         ActionButton(
           onPressed: () => Get.toNamed(
-            'details',
+            'poke_create',
           ),
           icon: const Icon(Icons.add),
-          color: Colors.blue,
+          color: Colors.green,
         ),
         ActionButton(onPressed: () => 1, icon: const Icon(Icons.search), color: Colors.grey),
       ],

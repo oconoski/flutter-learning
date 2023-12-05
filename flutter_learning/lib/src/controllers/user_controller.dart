@@ -14,7 +14,7 @@ class UserController extends GetxController {
   final username = TextEditingController();
   final password = TextEditingController();
 
-  var loading = false.obs;
+  var loading = true.obs;
   var visiblePassword = false.obs;
 
   GlobalKey<FormState> loginForm = GlobalKey<FormState>();
