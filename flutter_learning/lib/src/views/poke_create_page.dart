@@ -3,9 +3,11 @@ import 'package:flutter_learning/src/controllers/poke_controller.dart';
 import 'package:flutter_learning/src/data/providers/poke_provider.dart';
 import 'package:flutter_learning/src/data/repository/poke_repository.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
 
 class PokeCreatePage extends GetView<PokeController> {
-  final pokeController = Get.put(PokeController(PokeRepository(PokeProvider())));
+  final pokeController =
+      Get.put(PokeController(PokeRepository(PokeProvider())));
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +53,82 @@ class PokeCreatePage extends GetView<PokeController> {
                               const SizedBox(
                                 height: 50,
                               ),
+                              InkWell(
+                                onTap: () => {pokeController.prepareCameras()},
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(00.0),
+                                  child: Obx(
+                                    () => SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Visibility(
+                                            visible:
+                                                pokeController.myphoto.value !=
+                                                    '',
+                                            child: Container(
+                                              height: 60,
+                                              width: 60,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                color: Colors.green,
+                                                image: DecorationImage(
+                                                  image: MemoryImage(
+                                                      base64Decode(
+                                                          pokeController
+                                                              .myphoto.value!)),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          Visibility(
+                                            visible:
+                                                pokeController.myphoto.value ==
+                                                    '',
+                                            child: Container(
+                                              width: 60,
+                                              height: 60,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                                image: DecorationImage(
+                                                  image: pokeController.myphoto.value !=
+                                                          ''
+                                                      ? NetworkImage(
+                                                          "${pokeController.myphoto.value}")
+                                                      : const NetworkImage(
+                                                          "https://dummyimage.com/600x400/000/fff&text=A"),
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 50,
+                              ),
                               SizedBox(
                                 width: double.infinity,
                                 child: TextFormField(
                                   controller: pokeController.name,
                                   validator: (value) {
-                                    if (value == null || value == '' || value.isEmpty) {
+                                    if (value == null ||
+                                        value == '' ||
+                                        value.isEmpty) {
                                       return 'Nome';
                                     }
                                   },
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
                                     hintText: 'Nome',
-                                    hintStyle: const TextStyle(color: Colors.white),
+                                    hintStyle:
+                                        const TextStyle(color: Colors.white),
                                     filled: true,
                                     focusColor: Colors.white,
                                     fillColor: Colors.grey,
@@ -123,13 +188,16 @@ class PokeCreatePage extends GetView<PokeController> {
                             pokeController.submit();
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(68, 70, 85, 1),
+                            backgroundColor:
+                                const Color.fromRGBO(68, 70, 85, 1),
                             padding: const EdgeInsets.symmetric(
                               vertical: 15.0,
                               horizontal: 30.0,
                             ),
                           ),
-                          child: pokeController.loading.isTrue ? const Text('Cadastrar') : const Text('carregando'),
+                          child: pokeController.loading.isTrue
+                              ? const Text('Cadastrar')
+                              : const Text('carregando'),
                         ),
                       ),
                     ],

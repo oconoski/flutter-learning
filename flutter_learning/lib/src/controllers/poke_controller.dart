@@ -2,10 +2,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_learning/src/data/models/poke_model.dart';
 import 'package:flutter_learning/src/data/repository/poke_repository.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'dart:convert';
 
 class PokeController extends GetxController {
   final PokeRepository repository;
   PokeController(this.repository);
+
+  final ImagePicker picker = ImagePicker();
+
+  Rxn<String> myphoto = Rxn<String>();
 
   final name = TextEditingController();
   final image = TextEditingController();
@@ -21,12 +29,30 @@ class PokeController extends GetxController {
   void onReady() async {
     await pokemonGet();
     super.onReady();
+    myphoto.value = '';
   }
 
   pokemonGet() async {
     await repository.get().then((data) {
+      print('pokemons:');
+      print(data);
       pokemons = data;
     }, onError: (e) {});
+  }
+
+  prepareCameras() async {
+    final XFile? photo =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
+
+    if (photo != null) {
+      var take = photo.path.toString();
+
+      File imageFile = File(take.toString());
+      List<int> imageBytes = imageFile.readAsBytesSync();
+      String base64Image = base64Encode(imageBytes);
+
+      myphoto.value = base64Image;
+    }
   }
 
   pokemonCreatePage() async {
@@ -34,10 +60,15 @@ class PokeController extends GetxController {
   }
 
   submit() async {
-    await repository.store(Poke(
-      name: name.text,
-      image: image.text,
-    ));
-    Get.offAllNamed('my_own_dex');
+    var validate = pokeForm.currentState!.validate();
+    var blob = myphoto.value.toString();
+
+    if (validate) {
+      await repository.store(Poke(
+        name: name.text,
+        image: blob,
+      ));
+      Get.offAllNamed('my_own_dex');
+    }
   }
 }
