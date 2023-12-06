@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'dart:convert';
 
 class PokeCreatePage extends GetView<PokeController> {
-  final pokeController = Get.put(PokeController(PokeRepository(PokeProvider())));
+  final pokeController =
+      Get.put(PokeController(PokeRepository(PokeProvider())));
 
   @override
   Widget build(BuildContext context) {
@@ -59,30 +60,41 @@ class PokeCreatePage extends GetView<PokeController> {
                                       child: Column(
                                         children: [
                                           Visibility(
-                                            visible: pokeController.myphoto.value != '',
+                                            visible:
+                                                pokeController.myphoto.value !=
+                                                    '',
                                             child: Container(
                                               height: 60,
                                               width: 60,
                                               decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(100),
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
                                                 color: Colors.green,
                                                 image: DecorationImage(
-                                                  image: MemoryImage(base64Decode(pokeController.myphoto.value!)),
+                                                  image: MemoryImage(
+                                                      base64Decode(
+                                                          pokeController
+                                                              .myphoto.value!)),
                                                   fit: BoxFit.cover,
                                                 ),
                                               ),
                                             ),
                                           ),
                                           Visibility(
-                                            visible: pokeController.myphoto.value == '',
+                                            visible:
+                                                pokeController.myphoto.value ==
+                                                    '',
                                             child: pokeController.photoExists()
                                                 ? Container(
                                                     width: 60,
                                                     height: 60,
                                                     decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(100),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
                                                       image: DecorationImage(
-                                                        image: NetworkImage("${pokeController.myphoto.value}"),
+                                                        image: NetworkImage(
+                                                            "${pokeController.myphoto.value}"),
                                                         fit: BoxFit.cover,
                                                       ),
                                                     ),
@@ -91,8 +103,22 @@ class PokeCreatePage extends GetView<PokeController> {
                                                     width: 350.0,
                                                     height: 350.0,
                                                     color: Colors.grey,
-                                                    child: const Center(child: Icon(Icons.camera)),
+                                                    child: const Center(
+                                                        child:
+                                                            Icon(Icons.camera)),
                                                   ),
+                                          ),
+                                          Visibility(
+                                            visible:
+                                                pokeController.myphoto.value ==
+                                                    '',
+                                            child: const Text(
+                                              "(Imagem opcional)",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                // Add any additional styling properties as needed
+                                              ),
+                                            ),
                                           ),
                                         ],
                                       ),
@@ -108,14 +134,17 @@ class PokeCreatePage extends GetView<PokeController> {
                                 child: TextFormField(
                                   controller: pokeController.name,
                                   validator: (value) {
-                                    if (value == null || value == '' || value.isEmpty) {
+                                    if (value == null ||
+                                        value == '' ||
+                                        value.isEmpty) {
                                       return 'Nome';
                                     }
                                   },
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
                                     hintText: 'Nome',
-                                    hintStyle: const TextStyle(color: Colors.white),
+                                    hintStyle:
+                                        const TextStyle(color: Colors.white),
                                     filled: true,
                                     focusColor: Colors.white,
                                     fillColor: Colors.grey,
@@ -175,13 +204,16 @@ class PokeCreatePage extends GetView<PokeController> {
                             pokeController.submit();
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color.fromRGBO(68, 70, 85, 1),
+                            backgroundColor:
+                                const Color.fromRGBO(68, 70, 85, 1),
                             padding: const EdgeInsets.symmetric(
                               vertical: 15.0,
                               horizontal: 30.0,
                             ),
                           ),
-                          child: pokeController.loading.isTrue ? const Text('Cadastrar') : const Text('carregando'),
+                          child: pokeController.loading.isTrue
+                              ? const Text('Cadastrar')
+                              : const Text('carregando'),
                         ),
                       ),
                     ],

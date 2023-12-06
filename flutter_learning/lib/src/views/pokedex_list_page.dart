@@ -20,7 +20,10 @@ class _PokedexListPageState extends State<PokedexListPage> {
     // Fetch random Pokémon data when the widget is initialized
     final pokedexRepository =
         Provider.of<PokedexRepository>(context, listen: false);
-    pokedexRepository.fetchRandomPokemons(5);
+
+    if (pokedexRepository.pokemons.isEmpty) {
+      pokedexRepository.fetchRandomPokemons(5);
+    }
   }
 
   @override

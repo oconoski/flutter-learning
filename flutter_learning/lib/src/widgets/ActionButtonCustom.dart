@@ -23,7 +23,7 @@ class _ActionButtonCustomState extends State<ActionButtonCustom> {
           icon: const Icon(Icons.add),
           color: Colors.green,
         ),
-        ActionButton(onPressed: () => 1, icon: const Icon(Icons.search), color: Colors.grey),
+        // ActionButton(onPressed: () => 1, icon: const Icon(Icons.search), color: Colors.grey),
       ],
     );
   }
@@ -45,7 +45,8 @@ class ExpansibleMenu extends StatefulWidget {
   State<ExpansibleMenu> createState() => _ExpansibleMenuState();
 }
 
-class _ExpansibleMenuState extends State<ExpansibleMenu> with SingleTickerProviderStateMixin {
+class _ExpansibleMenuState extends State<ExpansibleMenu>
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
   late final Animation<double> _expandAnimation;
 
@@ -152,7 +153,9 @@ class _ExpansibleMenuState extends State<ExpansibleMenu> with SingleTickerProvid
     final children = <Widget>[];
     final count = widget.children.length;
     final step = 90.0 / (count - 1);
-    for (var i = 0, angleInDegrees = 0.0; i < count; i++, angleInDegrees += step) {
+    for (var i = 0, angleInDegrees = 0.0;
+        i < count;
+        i++, angleInDegrees += step) {
       children.add(
         _ExpandingActionButton(
           directionInDegrees: angleInDegrees,
@@ -168,7 +171,8 @@ class _ExpansibleMenuState extends State<ExpansibleMenu> with SingleTickerProvid
 
 @immutable
 class ActionButton extends StatelessWidget {
-  const ActionButton({super.key, this.onPressed, required this.icon, required this.color});
+  const ActionButton(
+      {super.key, this.onPressed, required this.icon, required this.color});
 
   final VoidCallback? onPressed;
   final Widget icon;
