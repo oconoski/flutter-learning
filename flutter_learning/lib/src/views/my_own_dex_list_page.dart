@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/src/controllers/poke_controller.dart';
 import 'package:flutter_learning/src/controllers/user_controller.dart';
@@ -10,8 +12,10 @@ import 'package:flutter_learning/src/widgets/ActionButtonCustom.dart';
 import 'package:get/get.dart';
 
 class MyOwnDexPage extends GetView<PokeController> {
-  final pokeController = Get.put(PokeController(PokeRepository(PokeProvider())));
-  final userController = Get.put(UserController(UserRepository(UserProvider())));
+  final pokeController =
+      Get.put(PokeController(PokeRepository(PokeProvider())));
+  final userController =
+      Get.put(UserController(UserRepository(UserProvider())));
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +37,11 @@ class MyOwnDexPage extends GetView<PokeController> {
               },
               itemBuilder: (BuildContext context) {
                 return <PopupMenuEntry<String>>[
+                  // const PopupMenuItem<String>(
+                  //   value: 'Conta',
+                  //   child: Text('Conta'),
+                  // ),
                   const PopupMenuItem<String>(
-                    value: 'Conta',
-                    child: Text('Conta'),
-                  ),
-                  PopupMenuItem<String>(
                     value: 'Sair',
                     child: Text('Sair'),
                   ),
@@ -70,9 +74,10 @@ class MyOwnDexPage extends GetView<PokeController> {
                   return GestureDetector(
                     child: Dismissible(
                       key: UniqueKey(),
-                      background: Container(color: const Color.fromARGB(0, 244, 67, 54)),
+                      background: Container(
+                          color: const Color.fromARGB(0, 244, 67, 54)),
                       onDismissed: (direction) {
-                        // pokeController.removePokemon(pokemon.id);
+                        pokeController.removePokemon(pokemon.id);
                       },
                       child: GestureDetector(
                         child: Stack(
@@ -84,11 +89,11 @@ class MyOwnDexPage extends GetView<PokeController> {
                               ),
                               child: Center(
                                 child: pokemon.image.isNotEmpty
-                                    ? Image.network(
-                                        "pokemon.image",
+                                    ? Image.memory(
+                                        base64Decode(pokemon.image),
                                         fit: BoxFit.cover,
-                                        width: 350,
-                                        height: 350,
+                                        width: 350.0,
+                                        height: 350.0,
                                       )
                                     : Container(
                                         width: 350.0,
@@ -114,25 +119,6 @@ class MyOwnDexPage extends GetView<PokeController> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              right: 10,
-                              top: 10,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50.0),
-                                ),
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.favorite_border,
-                                  ),
-                                  onPressed: () {
-                                    // pokeController.toggleFavorite(pokemon.id);
-                                  },
-                                  color: const Color.fromARGB(255, 200, 15, 1),
                                 ),
                               ),
                             ),

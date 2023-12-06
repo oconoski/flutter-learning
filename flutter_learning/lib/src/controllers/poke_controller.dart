@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_learning/src/data/models/poke_model.dart';
+import 'package:flutter_learning/src/data/providers/poke_provider.dart';
 import 'package:flutter_learning/src/data/repository/poke_repository.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -39,7 +40,8 @@ class PokeController extends GetxController {
   }
 
   prepareCameras() async {
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
+    final XFile? photo =
+        await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
 
     if (photo != null) {
       var take = photo.path.toString();
@@ -67,6 +69,11 @@ class PokeController extends GetxController {
       ));
       Get.offAllNamed('my_own_dex');
     }
+  }
+
+  removePokemon(id) {
+    pokemons.removeWhere((pokemon) => pokemon.id == id);
+    repository.delete(id);
   }
 
   photoExists() {
