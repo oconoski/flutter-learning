@@ -32,17 +32,14 @@ class PokeController extends GetxController {
     myphoto.value = '';
   }
 
-  pokemonGet() async {
-    await repository.get().then((data) {
-      print('pokemons:');
-      print(data);
-      pokemons = data;
-    }, onError: (e) {});
+  Future<List<Poke>> pokemonGet() async {
+    final data = await repository.get();
+    pokemons = data;
+    return data;
   }
 
   prepareCameras() async {
-    final XFile? photo =
-        await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera, imageQuality: 10);
 
     if (photo != null) {
       var take = photo.path.toString();
@@ -70,5 +67,9 @@ class PokeController extends GetxController {
       ));
       Get.offAllNamed('my_own_dex');
     }
+  }
+
+  photoExists() {
+    return myphoto.value?.isNotEmpty;
   }
 }
